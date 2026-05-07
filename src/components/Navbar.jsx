@@ -1,6 +1,13 @@
-import { NavLink } from "react-router";
+import { NavLink, useNavigate } from "react-router";
+import { useAuthHook } from "../hooks/UseAuthHook";
 
 const Navbar = () => {
+  const { logout } = useAuthHook();
+  const navigate = useNavigate();
+  function logoutandredirect() {
+    logout();
+    navigate("/guest");
+  }
   const testF = ({ isActive }) => {
     return ` border-b-2 px-3 py-2 rounded-2xl ${isActive ? "border-blue-500 text-blue-500" : "border-transparent  hover:border-gray-300"}`;
   };
@@ -15,6 +22,7 @@ const Navbar = () => {
       <NavLink end to="/dashboard" className={testF}>
         Dashboard
       </NavLink>
+      <NavLink onClick={logoutandredirect}>Logout</NavLink>
     </div>
   );
 };
