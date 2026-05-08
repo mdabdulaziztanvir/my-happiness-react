@@ -24,8 +24,12 @@ const Login = () => {
       setUser(res.user);
       setUsername("");
       setPassword("");
-      navigate("/");
-      console.log(res.user);
+      if (res.user.adminValue === 1) {
+        navigate("/admin");
+      } else {
+        navigate("/");
+      }
+
       localStorage.setItem("savedUser", JSON.stringify(res.user));
     } catch (error) {
       setError(error.message);

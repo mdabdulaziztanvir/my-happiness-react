@@ -11,6 +11,8 @@ import ProtectedRoute from "./ProtectedRoute";
 import ProtectedAdminRoute from "./ProtectedAdminRoute";
 import Signup from "../pages/guest/Signup";
 import Login from "../pages/guest/Login";
+import AdminNote from "../pages/admin/AdminNote";
+import MulterFileUpload from "../pages/MulterFileUpload";
 
 const RoutesManager = () => {
   return (
@@ -21,10 +23,12 @@ const RoutesManager = () => {
             <Route path="/" element={<Home />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/upload" element={<MulterFileUpload />} />
           </Route>
           <Route element={<ProtectedAdminRoute />}>
             <Route path="admin" element={<AdminLayout />}>
               <Route path="" element={<AdminDashboard />} />
+              <Route path="note" element={<AdminNote />} />
             </Route>
           </Route>
         </Route>

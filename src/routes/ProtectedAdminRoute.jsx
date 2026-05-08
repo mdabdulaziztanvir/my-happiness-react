@@ -1,23 +1,16 @@
-import { Outlet, useNavigate } from "react-router";
+import { Navigate, Outlet } from "react-router";
 import { useAuthHook } from "../hooks/UseAuthHook";
-import { useEffect } from "react";
+// import { useEffect } from "react";
 
 const ProtectedAdminRoute = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
-  const { user } = useAuthHook();
+  const { user, isLoading } = useAuthHook();
 
-  const isAdmin = user.adminValue === "1";
+  if (isLoading) return <div>...loading</div>;
+  const isAdmin = user.adminValue === 1;
 
-  useEffect(() => {
-    if (!isAdmin) {
-      return navigate(-1);
-    }
-  }, [isAdmin, navigate]);
-
-  return <Outlet />;
-
-  //   return user.adminValue === "1" ? <Outlet /> : <Navigate to="/" replace />;
+  return isAdmin ? <Outlet /> : <Navigate to="/" replace />;
 };
 
 export default ProtectedAdminRoute;

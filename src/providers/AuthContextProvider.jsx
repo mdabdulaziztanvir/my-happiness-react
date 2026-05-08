@@ -3,7 +3,9 @@ import AuthenticationContex from "../contexts/AutheticationContext";
 
 const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
+  // console.log(user);
   const logout = () => {
     localStorage.removeItem("savedUser");
     setUser(null);
@@ -13,6 +15,8 @@ const AuthContextProvider = ({ children }) => {
     user,
     setUser,
     logout,
+    isLoading,
+    setIsLoading,
   };
 
   return (

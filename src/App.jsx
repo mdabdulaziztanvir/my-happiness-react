@@ -5,7 +5,7 @@ import RoutesManager from "./routes/Routes";
 import { useNavigate } from "react-router";
 
 const App = () => {
-  const { setUser } = useAuthHook();
+  const { setUser, setIsLoading } = useAuthHook();
   const navigate = useNavigate();
   useEffect(() => {
     const savedUserLocal = localStorage.getItem("savedUser");
@@ -16,10 +16,17 @@ const App = () => {
 
       return;
     }
-    const aaa = JSON.parse(savedUserLocal);
-    setUser(aaa);
-    navigate("/");
-  }, [setUser, navigate]);
+    try {
+      const aaa = JSON.parse(savedUserLocal);
+      setUser(aaa);
+      console.log(aaa);
+    } catch (error) {
+      localStorage.removeItem("savedUser");
+      console.error(error.message);
+    } finally {
+      setIsLoading(false);
+    }
+  }, [setUser, navigate, setIsLoading]);
   return (
     <>
       <RoutesManager />

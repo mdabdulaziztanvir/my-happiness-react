@@ -19,6 +19,9 @@ const Navbar = () => {
       <NavLink end to="/profile" className={testF}>
         Profile
       </NavLink>
+      <NavLink end to="/upload" className={testF}>
+        Upload
+      </NavLink>
       <NavLink end to="/dashboard" className={testF}>
         Dashboard
       </NavLink>
