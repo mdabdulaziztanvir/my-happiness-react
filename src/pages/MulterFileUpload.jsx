@@ -18,9 +18,7 @@ const MulterFileUpload = () => {
     try {
       setIsUploading(true);
 
-      const data = await fileUpload(file, setProgress);
-
-      console.log(data);
+      await fileUpload(file, setProgress);
     } catch (error) {
       console.error(error);
     } finally {

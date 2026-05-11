@@ -2,9 +2,10 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { login } from "../../services/auth";
 import { useAuthHook } from "../../hooks/UseAuthHook";
+import { setAuthToken } from "../../api/apiInstance";
 
 const Login = () => {
-  const { setUser } = useAuthHook();
+  const { setUser, setIsLoading } = useAuthHook();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -22,15 +23,18 @@ const Login = () => {
 
       const res = await login(userData);
       setUser(res.user);
+      setAuthToken(res.accessToken);
+
+      setIsLoading(false);
+
       setUsername("");
       setPassword("");
-      if (res.user.adminValue === 1) {
+
+      if (Number(res?.user?.adminValue) === 1) {
         navigate("/admin");
       } else {
         navigate("/");
       }
-
-      localStorage.setItem("savedUser", JSON.stringify(res.user));
     } catch (error) {
       setError(error.message);
     }
@@ -40,7 +44,7 @@ const Login = () => {
     <>
       <div className="flex items-center justify-center ">
         <div className="">
-          <div className="login-icon text-[200px]">&#128722;</div>
+          <div className="login-icon text-[200px]">Login Form</div>
           <div className="login-form">
             <p className="login-success"></p>
             <form
@@ -48,7 +52,7 @@ const Login = () => {
               className="flex flex-col justify-center items-center gap-3"
             >
               <label htmlFor="username" className="mt-3">
-                Enter Username
+                Enter Username or Password
               </label>
               <input
                 type="text"

@@ -35,10 +35,12 @@ const Signup = () => {
 
   return (
     <>
-      <div className="flex items-center justify-center ">
-        <div className="">
-          <div className="login-icon text-[200px] text-center">&#128722;</div>
-          <div className="login-form">
+      <div className="flex  items-center justify-center ">
+        <div className=" items-center gap-4 ">
+          <div className="login-icon text-[200px] text-center ">
+            Signup Form
+          </div>
+          <div className="login-form  p-3 w-full">
             {successMessage && (
               <div className="login-success">
                 {successMessage.message}
@@ -47,7 +49,7 @@ const Signup = () => {
                   Your Username is:
                   <span className="text-green-400 text-2xl">
                     {"  "}
-                    {successMessage.user.username}{" "}
+                    {successMessage.user?.username}{" "}
                   </span>
                   Collect it for Login
                 </p>
@@ -112,23 +114,23 @@ const Signup = () => {
                 type="submit"
                 className="px-4 py-1 rounded bg-gray-50 w-fit border border-cyan-600 cursor-pointer hover:bg-gray-100"
               >
-                Login
+                Signup
               </button>
             </form>
+            <div className="forgetPass-newAccount ">
+              <p>
+                Already have a account?
+                <Link
+                  to="/guest/login"
+                  className="underline text-green-600 hover:text-green-700 active:outline active:outline-dashed"
+                >
+                  Login
+                </Link>
+              </p>
+              <p>Forget Passwprd?</p>
+            </div>
           </div>
           <p className="login-error-handle text-red-600 ">{error && error}</p>
-          <div className="forgetPass-newAccount ">
-            <p>
-              Already have a account?
-              <Link
-                to="/guest/login"
-                className="underline text-green-600 hover:text-green-700 active:outline active:outline-dashed"
-              >
-                Login
-              </Link>
-            </p>
-            <p>Forget Passwprd?</p>
-          </div>
         </div>
       </div>
     </>

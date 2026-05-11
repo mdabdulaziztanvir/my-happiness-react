@@ -4,8 +4,10 @@ import AdminSidebar from "../components/admin/AdminSidebar";
 const AdminLayout = () => {
   return (
     <>
-      <AdminSidebar />
-      <Outlet />
+      <div className="flex gap-2">
+        <AdminSidebar />
+        <Outlet />
+      </div>
     </>
   );
 };

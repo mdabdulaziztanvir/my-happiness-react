@@ -13,6 +13,8 @@ import Signup from "../pages/guest/Signup";
 import Login from "../pages/guest/Login";
 import AdminNote from "../pages/admin/AdminNote";
 import MulterFileUpload from "../pages/MulterFileUpload";
+import IndexUserManagement from "../pages/admin/user-management/IndexUserManagement";
+import UpdateUser from "../pages/admin/user-management/UpdateUser";
 
 const RoutesManager = () => {
   return (
@@ -27,14 +29,17 @@ const RoutesManager = () => {
           </Route>
           <Route element={<ProtectedAdminRoute />}>
             <Route path="admin" element={<AdminLayout />}>
-              <Route path="" element={<AdminDashboard />} />
+              <Route path="" element={<AdminDashboard />}>
+                <Route path="users" element={<IndexUserManagement />} />
+                <Route path="users/:id" element={<UpdateUser />} />
+              </Route>
               <Route path="note" element={<AdminNote />} />
             </Route>
           </Route>
         </Route>
 
         <Route path="guest" element={<GuestLayout />}>
-          <Route path="" element={<GuestHome />} />
+          <Route index element={<GuestHome />} />
           <Route path="signup" element={<Signup />} />
           <Route path="login" element={<Login />} />
         </Route>
