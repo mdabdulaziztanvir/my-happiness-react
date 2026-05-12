@@ -101,3 +101,38 @@ export const getSingleUser = async (id) => {
     });
   }
 };
+// forget password
+export const forgetPass = async (formData) => {
+  console.log(formData);
+  try {
+    const res = await apiInstance.post("/user/reset-password", formData);
+    return res.data;
+  } catch (error) {
+    throw Error(error.response?.data?.message || "error deleting a user", {
+      cause: error,
+    });
+  }
+};
+// after find a user by email or name then validate the otp
+export const validateOtp = async (formData) => {
+  try {
+    const res = await apiInstance.post("/user/validate-otp", formData);
+    return res.data;
+  } catch (error) {
+    throw Error(error.response?.data?.message || "error deleting a user", {
+      cause: error,
+    });
+  }
+};
+// change password
+export const passwordChange = async (formData) => {
+  try {
+    console.log(formData);
+    const res = await apiInstance.post("/user/update-password", formData);
+    return res.data;
+  } catch (error) {
+    throw Error(error.response?.data?.message || "error deleting a user", {
+      cause: error,
+    });
+  }
+};

@@ -15,6 +15,8 @@ import AdminNote from "../pages/admin/AdminNote";
 import MulterFileUpload from "../pages/MulterFileUpload";
 import IndexUserManagement from "../pages/admin/user-management/IndexUserManagement";
 import UpdateUser from "../pages/admin/user-management/UpdateUser";
+import ForgetPassword from "../pages/guest/ForgetPassword";
+import NewPassword from "../pages/guest/NewPassword";
 
 const RoutesManager = () => {
   return (
@@ -42,6 +44,8 @@ const RoutesManager = () => {
           <Route index element={<GuestHome />} />
           <Route path="signup" element={<Signup />} />
           <Route path="login" element={<Login />} />
+          <Route path="forget-password" element={<ForgetPassword />} />
+          <Route path="new-password" element={<NewPassword />} />
         </Route>
         <Route path="*" element={<h1>404 error</h1>} />
       </Routes>

@@ -127,7 +127,11 @@ const Signup = () => {
                   Login
                 </Link>
               </p>
-              <p>Forget Passwprd?</p>
+              <p>
+                <Link to="/guest/forget-password" className="underline">
+                  Forget Passwprd?
+                </Link>
+              </p>
             </div>
           </div>
           <p className="login-error-handle text-red-600 ">{error && error}</p>

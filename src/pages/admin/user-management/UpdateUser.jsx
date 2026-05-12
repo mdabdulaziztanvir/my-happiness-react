@@ -12,6 +12,7 @@ const UpdateUser = () => {
     adminValue: 0,
   });
   const [updateSuccessMessage, setUpdateSuccessMessage] = useState("");
+  const [updateErrorMessage, setUpdateErrorMessage] = useState("");
 
   useEffect(() => {
     const getUser = async () => {
@@ -41,7 +42,7 @@ const UpdateUser = () => {
       const res = await updateUser(id, tryFormData);
       setUpdateSuccessMessage(res);
     } catch (error) {
-      throw Error(error.response?.data?.message, { cause: error });
+      setUpdateErrorMessage(error?.message);
     }
   };
   return (
@@ -53,6 +54,9 @@ const UpdateUser = () => {
             <h1 className="text-lg text-green-500">
               {updateSuccessMessage?.message}
             </h1>
+          )}
+          {updateErrorMessage && (
+            <h1 className="text-lg text-red-500">{updateErrorMessage}</h1>
           )}
           <div>
             <Link
